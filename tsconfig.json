@@ -5,6 +5,7 @@
     "paths": {
       "@domain": ["src/domain"],
       "@domain/*": ["src/domain/*"],
+      "@infrastructure": ["src/infrastructure"],
       "@infrastructure/*": ["src/infrastructure/*"]
     }
   }
