@@ -40,11 +40,11 @@ export const SignIn = ({navigation}: SignInProps) => {
         <VStack space={3} mt="5">
           <FormControl>
             <FormControl.Label>Email</FormControl.Label>
-            <Input />
+            <Input variant="underlined" type="text" />
           </FormControl>
           <FormControl>
             <FormControl.Label>Mot de passe</FormControl.Label>
-            <Input type="password" />
+            <Input type="password" variant="underlined" />
             <Link
               _text={{
                 fontSize: 'xs',
