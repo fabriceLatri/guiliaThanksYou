@@ -6,6 +6,7 @@ import type {
   SignInHook,
 } from '@infrastructure/views/screens/auth/SignIn/types';
 import {signInValidatorSchema} from '@infrastructure/views/screens/auth/SignIn/validator';
+import {useServices} from '@infrastructure/contexts';
 
 export const useSignIn = (): SignInHook => {
   const {
@@ -14,12 +15,13 @@ export const useSignIn = (): SignInHook => {
     formState: {errors},
   } = useForm<LoginFormData>({
     resolver: yupResolver(signInValidatorSchema),
-    mode: 'onBlur',
   });
 
+  const {authService} = useServices();
+
   const onSubmit = useCallback(
-    handleSubmit(({email, password}: LoginFormData) => {
-      console.log(email, password);
+    handleSubmit(async ({email, password}: LoginFormData) => {
+      await authService.signInAsync(email, password);
     }),
     [],
   );
