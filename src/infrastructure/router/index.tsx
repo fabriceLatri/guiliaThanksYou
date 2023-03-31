@@ -19,7 +19,6 @@ export const Router = () => {
 
   // Handle user state changes
   function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
-    console.log(user);
     setUser(user);
     if (initializing) setInitializing(false);
   }
