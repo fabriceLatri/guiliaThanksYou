@@ -26,9 +26,10 @@ interface Props<FieldsType extends FieldValues>
   variant?: ResponsiveValue<
     'outline' | 'rounded' | (string & {}) | 'unstyled' | 'underlined' | 'filled'
   >;
+  required?: boolean;
 }
 
-const FormInputController = <FieldsType extends FieldValues>({
+export const FormInputController = <FieldsType extends FieldValues>({
   variant,
   error,
   rules,
@@ -38,9 +39,10 @@ const FormInputController = <FieldsType extends FieldValues>({
   name,
   placeholder,
   children,
+  required,
 }: PropsWithChildren<Props<FieldsType>>) => {
   const isInvalid = error != null;
-  const isRequired = rules != null && 'required' in rules;
+  const isRequired = (rules != null && 'required' in rules) || !!required;
 
   return (
     <VStack space={3}>
@@ -69,5 +71,3 @@ const FormInputController = <FieldsType extends FieldValues>({
     </VStack>
   );
 };
-
-export default FormInputController;

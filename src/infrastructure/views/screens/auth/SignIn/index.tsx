@@ -9,35 +9,18 @@ import {
   Text,
   VStack,
 } from 'native-base';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
 
-import type {
+import {FormInputController} from '@infrastructure/views/shared/UI/formInputController';
+
+import {useSignIn} from './hooks/useSignIn';
+
+import {
+  LoginFormFields,
   SignInProps,
-  LoginFormData,
 } from '@infrastructure/views/screens/auth/SignIn/types';
-import FormInputController from '@infrastructure/views/shared/UI/formInputController';
-import {signInValidatorSchema} from '@infrastructure/views/screens/auth/SignIn/validator';
-
-enum FormFields {
-  email = 'email',
-  password = 'password',
-}
 
 export const SignIn = ({navigation}: SignInProps) => {
-  const {
-    control,
-    handleSubmit,
-    formState: {errors},
-  } = useForm<LoginFormData>({
-    resolver: yupResolver(signInValidatorSchema),
-    mode: 'onBlur',
-  });
-
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
-  };
-
+  const {control, errors, onSubmit} = useSignIn();
   return (
     <Center w="100%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -66,8 +49,9 @@ export const SignIn = ({navigation}: SignInProps) => {
             control={control}
             error={errors.email}
             label="Email"
-            name={FormFields.email}
+            name={LoginFormFields.email}
             variant="underlined"
+            required
           />
           {/* <FormControl>
             <FormControl.Label>Email</FormControl.Label>
@@ -77,9 +61,10 @@ export const SignIn = ({navigation}: SignInProps) => {
             control={control}
             error={errors.password}
             label="Mot de passe"
-            name={FormFields.password}
+            name={LoginFormFields.password}
             variant="underlined"
-            type="password">
+            type="password"
+            required>
             <Link
               _text={{
                 fontSize: 'xs',
@@ -105,7 +90,7 @@ export const SignIn = ({navigation}: SignInProps) => {
               Mot de passe oublié?
             </Link>
           </FormControl> */}
-          <Button mt="2" colorScheme="indigo" onPress={handleSubmit(onSubmit)}>
+          <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
             Connexion
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>
