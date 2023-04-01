@@ -8,20 +8,22 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
-import {Router} from '@infrastructure/router';
-import {ServicesProvider, createRootService} from '@infrastructure/contexts';
+import {Toast} from 'react-native-toast-message/lib/src/Toast';
 
-const services = createRootService();
+import {Router} from '@infrastructure/router';
+import {Provider} from 'react-redux';
+import {store} from '@infrastructure/RTK/store';
 
 function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <NativeBaseProvider>
-        <ServicesProvider value={services}>
+    <Provider store={store}>
+      <NavigationContainer>
+        <NativeBaseProvider>
           <Router />
-        </ServicesProvider>
-      </NativeBaseProvider>
-    </NavigationContainer>
+        </NativeBaseProvider>
+      </NavigationContainer>
+      <Toast position="bottom" />
+    </Provider>
   );
 }
 

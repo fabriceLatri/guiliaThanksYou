@@ -18,10 +18,10 @@ export const Router = () => {
   const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
   // Handle user state changes
-  function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
+  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
     setUser(user);
     if (initializing) setInitializing(false);
-  }
+  };
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
@@ -35,7 +35,7 @@ export const Router = () => {
       <Stack.Screen
         name="SignIn"
         component={SignIn}
-        options={{headerShown: false}}
+        options={{headerShown: false, animationTypeForReplace: 'pop'}}
       />
       <Stack.Screen
         name="SignUp"

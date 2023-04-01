@@ -6,7 +6,9 @@ import type {
   SignInHook,
 } from '@infrastructure/views/screens/auth/SignIn/types';
 import {signInValidatorSchema} from '@infrastructure/views/screens/auth/SignIn/validator';
-import {useServices} from '@infrastructure/contexts';
+import {signInThunk} from '@infrastructure/RTK/auth/thunks';
+// import {SignInAction} from '@infrastructure/RTK/auth/thunks/types';
+import {useAppDispatch} from '@infrastructure/RTK/store';
 
 export const useSignIn = (): SignInHook => {
   const {
@@ -17,11 +19,11 @@ export const useSignIn = (): SignInHook => {
     resolver: yupResolver(signInValidatorSchema),
   });
 
-  const {authService} = useServices();
+  const dispatch = useAppDispatch();
 
   const onSubmit = useCallback(
     handleSubmit(async ({email, password}: LoginFormData) => {
-      await authService.signInAsync(email, password);
+      await dispatch(signInThunk({email, password}));
     }),
     [],
   );
