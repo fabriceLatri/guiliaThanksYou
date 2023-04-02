@@ -28,9 +28,8 @@ export const useSignIn = (): SignInHook => {
       try {
         await dispatch(signInThunk({email, password})).unwrap();
       } catch (error) {
-        displayErrorToast(
-          typeof error === 'string' ? error : 'Erreur inconnue',
-        );
+        const authError = error as AuthError;
+        displayErrorToast(authError.message);
       }
     }),
     [],

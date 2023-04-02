@@ -13,7 +13,7 @@ export const signInThunk = createAsyncThunk(
       return await authService.signInAsync(email, password);
     } catch (error) {
       return rejectWithValue(
-        error instanceof Error ? error.message : 'Unknown Error',
+        new AuthError(error instanceof Error ? error.message : 'Unknown Error'),
       );
     }
   },
