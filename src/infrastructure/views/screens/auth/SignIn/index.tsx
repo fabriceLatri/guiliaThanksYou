@@ -3,17 +3,24 @@ import {
   Box,
   Button,
   Center,
-  FormControl,
   HStack,
   Heading,
-  Input,
   Link,
   Text,
   VStack,
 } from 'native-base';
-import type {SignInProps} from '@infrastructure/views/screens/auth/SignIn/types';
+
+import {FormInputController} from '@infrastructure/views/shared/UI/formInputController';
+
+import {useSignIn} from './hooks/useSignIn';
+
+import {
+  LoginFormFields,
+  SignInProps,
+} from '@infrastructure/views/screens/auth/SignIn/types';
 
 export const SignIn = ({navigation}: SignInProps) => {
+  const {control, errors, onSubmit} = useSignIn();
   return (
     <Center w="100%">
       <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -38,13 +45,26 @@ export const SignIn = ({navigation}: SignInProps) => {
         </Heading>
 
         <VStack space={3} mt="5">
-          <FormControl>
+          <FormInputController
+            control={control}
+            error={errors.email}
+            label="Email"
+            name={LoginFormFields.email}
+            variant="underlined"
+            required
+          />
+          {/* <FormControl>
             <FormControl.Label>Email</FormControl.Label>
-            <Input />
-          </FormControl>
-          <FormControl>
-            <FormControl.Label>Mot de passe</FormControl.Label>
-            <Input type="password" />
+            <Input variant="underlined" type="text" />
+          </FormControl> */}
+          <FormInputController
+            control={control}
+            error={errors.password}
+            label="Mot de passe"
+            name={LoginFormFields.password}
+            variant="underlined"
+            type="password"
+            required>
             <Link
               _text={{
                 fontSize: 'xs',
@@ -55,8 +75,22 @@ export const SignIn = ({navigation}: SignInProps) => {
               mt="1">
               Mot de passe oublié?
             </Link>
-          </FormControl>
-          <Button mt="2" colorScheme="indigo">
+          </FormInputController>
+          {/* <FormControl>
+            <FormControl.Label>Mot de passe</FormControl.Label>
+            <Input type="password" variant="underlined" />
+            <Link
+              _text={{
+                fontSize: 'xs',
+                fontWeight: '500',
+                color: 'indigo.500',
+              }}
+              alignSelf="flex-end"
+              mt="1">
+              Mot de passe oublié?
+            </Link>
+          </FormControl> */}
+          <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
             Connexion
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>
