@@ -9,13 +9,12 @@ const authService = new AuthService(new authFirebaseRepository());
 export const signInThunk = createAsyncThunk(
   'auth/signin',
   async ({email, password}: SignInAction, {rejectWithValue}) => {
-    // try {
-    return await authService.signInAsync(email, password);
-    // } catch (error) {
-    //   if (error instanceof Error) {
-    //     rejectWithValue(new AuthError(error.message));
-    //   }
-    //   rejectWithValue(new AuthError('Unknown Error'));
-    // }
+    try {
+      return await authService.signInAsync(email, password);
+    } catch (error) {
+      return rejectWithValue(
+        error instanceof Error ? error.message : 'Unknown Error',
+      );
+    }
   },
 );

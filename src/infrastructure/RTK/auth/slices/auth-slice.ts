@@ -1,33 +1,24 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {createSlice} from '@reduxjs/toolkit';
 import {signInThunk} from '@infrastructure/RTK/auth/thunks';
 import {AuthState} from '@infrastructure/RTK/auth/slices/types';
-import Toast from 'react-native-toast-message';
+import {AuthError} from '@domain/models/errors/auth/authError';
 
-const initialState = null as AuthState;
+const initialState = {
+  loading: false,
+  id: '',
+  email: '',
+  isAnonymous: true,
+  error: null,
+} as AuthState;
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    authSuccess: (
-      state: AuthState,
-      {payload}: PayloadAction<FirebaseAuthTypes.User>,
-    ) => {
-      const {uid: id, email, isAnonymous} = payload;
-
-      if (!email) return state;
-
-      return {
-        loading: false,
-        id,
-        email,
-        isAnonymous,
-      };
-    },
-    authError: (state: AuthState) => null,
-  },
+  reducers: {},
   extraReducers: builder => {
+    builder.addCase(signInThunk.pending, state => {
+      return {...state, loading: true};
+    });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       // Add user to the state array
       const {uid: id, email, isAnonymous} = action.payload;
@@ -39,22 +30,17 @@ const authSlice = createSlice({
         id,
         email,
         isAnonymous,
-      };
+      } as AuthState;
     });
     builder.addCase(signInThunk.rejected, (state, action) => {
       const {payload} = action;
 
-      if (payload instanceof Error) {
-        Toast.show({
-          type: 'error',
-          text1: 'Erreur!',
-          text2: 'Email ou mot de passe incorrects',
-        });
-      }
-      return state;
+      return {
+        ...state,
+        error: payload as AuthError,
+      };
     });
   },
 });
 
-const {authSuccess, authError} = authSlice.actions;
 export default authSlice;

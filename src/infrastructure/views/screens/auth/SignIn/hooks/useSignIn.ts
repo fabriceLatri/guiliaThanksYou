@@ -7,8 +7,9 @@ import type {
 } from '@infrastructure/views/screens/auth/SignIn/types';
 import {signInValidatorSchema} from '@infrastructure/views/screens/auth/SignIn/validator';
 import {signInThunk} from '@infrastructure/RTK/auth/thunks';
-// import {SignInAction} from '@infrastructure/RTK/auth/thunks/types';
-import {useAppDispatch} from '@infrastructure/RTK/store';
+import {useAppDispatch} from '@infrastructure/RTK/hooks';
+import {AuthError} from '@domain/models/errors/auth/authError';
+import {useToast} from '@infrastructure/helpers/hooks/toast';
 
 export const useSignIn = (): SignInHook => {
   const {
@@ -20,10 +21,17 @@ export const useSignIn = (): SignInHook => {
   });
 
   const dispatch = useAppDispatch();
+  const {displayErrorToast} = useToast();
 
   const onSubmit = useCallback(
     handleSubmit(async ({email, password}: LoginFormData) => {
-      await dispatch(signInThunk({email, password}));
+      try {
+        await dispatch(signInThunk({email, password})).unwrap();
+      } catch (error) {
+        displayErrorToast(
+          typeof error === 'string' ? error : 'Erreur inconnue',
+        );
+      }
     }),
     [],
   );

@@ -1,6 +1,5 @@
-import {useEffect, useState} from 'react';
+import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 // Screens
 import {SignIn} from '@infrastructure/views/screens/auth/SignIn';
@@ -9,28 +8,22 @@ import {Home} from '@infrastructure/views/screens/home';
 
 // Types
 import {RootStackParamsList} from '@infrastructure/router/types';
+import {useRouter} from '@infrastructure/router/hooks/useRouter';
 
 const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 export const Router = () => {
-  // Set an initializing state whilst Firebase connects
-  const [initializing, setInitializing] = useState(true);
-  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
+  const {isAuthenticated} = useRouter();
 
-  // Handle user state changes
-  const onAuthStateChanged = (user: FirebaseAuthTypes.User | null) => {
-    setUser(user);
-    if (initializing) setInitializing(false);
-  };
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber; // unsubscribe on unmount
-  }, []);
-
-  if (initializing) return null;
-
-  return !user ? (
+  return isAuthenticated ? (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{headerLargeTitle: true}}
+      />
+    </Stack.Navigator>
+  ) : (
     <Stack.Navigator>
       <Stack.Screen
         name="SignIn"
@@ -41,14 +34,6 @@ export const Router = () => {
         name="SignUp"
         component={SignUp}
         options={{headerShown: false}}
-      />
-    </Stack.Navigator>
-  ) : (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{headerLargeTitle: true}}
       />
     </Stack.Navigator>
   );
