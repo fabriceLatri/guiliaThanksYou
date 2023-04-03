@@ -1,11 +1,9 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {Button, Center, Text} from 'native-base';
-import auth from '@react-native-firebase/auth';
+import {useHome} from '@infrastructure/views/screens/home/hooks/useHome';
 
 export const Home = () => {
-  const signOut = useCallback(async () => {
-    await auth().signOut();
-  }, []);
+  const {signOut} = useHome();
 
   return (
     <Center style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>

@@ -6,4 +6,5 @@ export interface IAuthRepository {
     password: string,
   ) => Promise<FirebaseAuthTypes.User | never>;
   signUp: (email: string, password: string) => Promise<void | never>;
+  signOut: () => Promise<void | never>;
 }

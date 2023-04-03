@@ -18,3 +18,16 @@ export const signInThunk = createAsyncThunk(
     }
   },
 );
+
+export const signOutThunk = createAsyncThunk(
+  'auth/signout',
+  async (_, {rejectWithValue}) => {
+    try {
+      return await authService.signOutAsync();
+    } catch (error) {
+      return rejectWithValue(
+        new AuthError(error instanceof Error ? error.message : 'Unknown Error'),
+      );
+    }
+  },
+);

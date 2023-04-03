@@ -21,4 +21,8 @@ export class AuthService implements IAuthService {
       if (error instanceof AuthError) console.error(error.message);
     }
   };
+
+  signOutAsync = async (): Promise<void> => {
+    await this.repository.signOut();
+  };
 }

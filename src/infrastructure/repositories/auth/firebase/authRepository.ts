@@ -18,4 +18,6 @@ export class authFirebaseRepository implements IAuthRepository {
   signUp = async (email: string, password: string): Promise<void | never> => {
     await auth().createUserWithEmailAndPassword(email, password);
   };
+
+  signOut = async (): Promise<void | never> => await auth().signOut();
 }

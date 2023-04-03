@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {signInThunk} from '@infrastructure/RTK/auth/thunks';
+import {signInThunk, signOutThunk} from '@infrastructure/RTK/auth/thunks';
 import {AuthState} from '@infrastructure/RTK/auth/slices/types';
 import {AuthError} from '@domain/models/errors/auth/authError';
 
@@ -32,14 +32,26 @@ const authSlice = createSlice({
         isAnonymous,
       } as AuthState;
     });
-    builder.addCase(signInThunk.rejected, (state, action) => {
-      const {payload} = action;
+    builder
+      .addCase(signInThunk.rejected, (state, action) => {
+        const {payload} = action;
 
-      return {
-        ...state,
-        error: payload as AuthError,
-      };
-    });
+        return {
+          ...state,
+          error: payload as AuthError,
+        };
+      })
+      .addCase(signOutThunk.fulfilled, state => {
+        return initialState;
+      })
+      .addCase(signOutThunk.rejected, (state, action) => {
+        const {payload} = action;
+
+        return {
+          ...state,
+          error: payload as AuthError,
+        };
+      });
   },
 });
 
