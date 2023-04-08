@@ -23,7 +23,7 @@ export const SignIn = ({navigation}: SignInProps) => {
   const {control, errors, onSubmit} = useSignIn();
   return (
     <Center w="100%">
-      <Box safeArea p="2" py="8" w="90%" maxW="290">
+      <Box safeArea p="2" py="8" w="90%">
         <Heading
           size="lg"
           fontWeight="600"
@@ -53,10 +53,6 @@ export const SignIn = ({navigation}: SignInProps) => {
             variant="underlined"
             required
           />
-          {/* <FormControl>
-            <FormControl.Label>Email</FormControl.Label>
-            <Input variant="underlined" type="text" />
-          </FormControl> */}
           <FormInputController
             control={control}
             error={errors.password}
@@ -76,20 +72,6 @@ export const SignIn = ({navigation}: SignInProps) => {
               Mot de passe oublié?
             </Link>
           </FormInputController>
-          {/* <FormControl>
-            <FormControl.Label>Mot de passe</FormControl.Label>
-            <Input type="password" variant="underlined" />
-            <Link
-              _text={{
-                fontSize: 'xs',
-                fontWeight: '500',
-                color: 'indigo.500',
-              }}
-              alignSelf="flex-end"
-              mt="1">
-              Mot de passe oublié?
-            </Link>
-          </FormControl> */}
           <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
             Connexion
           </Button>

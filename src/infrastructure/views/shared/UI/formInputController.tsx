@@ -27,6 +27,7 @@ interface Props<FieldsType extends FieldValues>
     'outline' | 'rounded' | (string & {}) | 'unstyled' | 'underlined' | 'filled'
   >;
   required?: boolean;
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
 }
 
 export const FormInputController = <FieldsType extends FieldValues>({
@@ -40,6 +41,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
   placeholder,
   children,
   required,
+  autoCapitalize,
 }: PropsWithChildren<Props<FieldsType>>) => {
   const isInvalid = error != null;
   const isRequired = (rules != null && 'required' in rules) || !!required;
@@ -59,6 +61,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
               onChangeText={val => onChange(val)}
               type={type}
               variant={variant}
+              autoCapitalize={autoCapitalize ?? 'none'}
             />
           )}
           rules={rules}

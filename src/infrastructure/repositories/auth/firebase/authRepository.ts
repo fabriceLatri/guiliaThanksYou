@@ -15,8 +15,16 @@ export class authFirebaseRepository implements IAuthRepository {
     return user.toJSON() as FirebaseAuthTypes.User;
   };
 
-  signUp = async (email: string, password: string): Promise<void | never> => {
-    await auth().createUserWithEmailAndPassword(email, password);
+  signUp = async (
+    email: string,
+    password: string,
+  ): Promise<FirebaseAuthTypes.User> => {
+    const userCredentials: FirebaseAuthTypes.UserCredential =
+      await auth().createUserWithEmailAndPassword(email, password);
+
+    const {user} = userCredentials;
+
+    return user.toJSON() as FirebaseAuthTypes.User;
   };
 
   signOut = async (): Promise<void | never> => await auth().signOut();

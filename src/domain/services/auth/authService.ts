@@ -14,12 +14,11 @@ export class AuthService implements IAuthService {
     return await this.repository.signIn(email, password);
   };
 
-  signUpAsync = async (email: string, password: string): Promise<void> => {
-    try {
-      await this.repository.signUp(email, password);
-    } catch (error: unknown) {
-      if (error instanceof AuthError) console.error(error.message);
-    }
+  signUpAsync = async (
+    email: string,
+    password: string,
+  ): Promise<FirebaseAuthTypes.User> => {
+    return await this.repository.signUp(email, password);
   };
 
   signOutAsync = async (): Promise<void> => {

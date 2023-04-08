@@ -1,4 +1,35 @@
-import {RootStackParamsList} from '@infrastructure/router/types';
+import * as yup from 'yup';
+import {Control, FieldErrors} from 'react-hook-form';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+import {RootStackParamsList} from '@infrastructure/router/types';
+import {signUpValidatorSchema} from '@infrastructure/views/screens/auth/SignUp/validator';
+
 export type SignUpProps = NativeStackScreenProps<RootStackParamsList, 'SignUp'>;
+
+export type SignUpFormData = yup.InferType<typeof signUpValidatorSchema>;
+
+export type SignUpHook = {
+  control: Control<
+    {
+      email: string;
+      password: string;
+      confirmPassword: string;
+    },
+    any
+  >;
+  onSubmit: (
+    e?: React.BaseSyntheticEvent<object, any, any> | undefined,
+  ) => Promise<void>;
+  errors: FieldErrors<{
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>;
+};
+
+export enum SignUpFormFields {
+  email = 'email',
+  password = 'password',
+  confirmPassword = 'confirmPassword',
+}

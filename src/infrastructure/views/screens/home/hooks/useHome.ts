@@ -1,11 +1,12 @@
 import {useCallback} from 'react';
-import {useAppDispatch} from '@infrastructure/RTK/hooks';
 import {useToast} from '@infrastructure/helpers/hooks/toast';
+
+import {useAppDispatch} from '@infrastructure/RTK/hooks';
+import {AuthError} from '@domain/models/errors/auth/authError';
+import {signOutThunk} from '@infrastructure/RTK/auth/thunks';
 
 // Types
 import type {UseHomeHook} from '@infrastructure/views/screens/home/types';
-import {AuthError} from '@domain/models/errors/auth/authError';
-import {signOutThunk} from '@infrastructure/RTK/auth/thunks';
 
 export const useHome = (): UseHomeHook => {
   const dispatch = useAppDispatch();
