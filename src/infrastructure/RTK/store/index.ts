@@ -1,6 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit';
 import authSlice from '@infrastructure/RTK/auth/slices/auth-slice';
-import {curryGetDefaultMiddleware} from '@reduxjs/toolkit/dist/getDefaultMiddleware';
 
 export const store = configureStore({
   reducer: {

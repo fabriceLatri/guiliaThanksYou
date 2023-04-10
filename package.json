@@ -9,7 +9,8 @@
     "start": "react-native start",
     "test": "jest",
     "detox:ios": "detox test --configuration ios.sim.debug",
-    "detox:android": "detox test --configuration android.emu.debug"
+    "detox:android": "detox test --configuration android.emu.debug",
+    "detox:test:mock": "MY_APP_MODE=mocked npx react-native start"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.0.0",

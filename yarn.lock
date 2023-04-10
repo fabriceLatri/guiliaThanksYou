@@ -2740,6 +2740,13 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/detox@^18.1.0":
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/@types/detox/-/detox-18.1.0.tgz#5d204f08c8db3a03827f9146b043fc2421327753"
+  integrity sha512-CpR+ziJgDOQhMwTt9fNciZhM9LxqyDRa49DKH0aplcSn26UU2WKSd1Tn1lNBrNCkMD8QNzFg+PYdGRFWrqK3Wg==
+  dependencies:
+    detox "*"
+
 "@types/graceful-fs@^4.1.3":
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.6.tgz#e14b2576a1c25026b7f02ede1de3b84c3a1efeae"
@@ -2774,7 +2781,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@^29.2.1":
+"@types/jest@^29.5.0":
   version "29.5.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.5.0.tgz#337b90bbcfe42158f39c2fb5619ad044bbb518ac"
   integrity sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==
@@ -4044,7 +4051,7 @@ detect-newline@^3.0.0:
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-3.1.0.tgz#576f5dfc63ae1a192ff192d8ad3af6308991b651"
   integrity sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==
 
-detox@^20.5.0:
+detox@*, detox@^20.5.0:
   version "20.6.0"
   resolved "https://registry.yarnpkg.com/detox/-/detox-20.6.0.tgz#9aef5d7d17c5a0e8a96592570a510881ac59c249"
   integrity sha512-89YxptnkvyQazN2I8EDRkH8tWqiOvqsGXZCZwUKP5lsulBSTJka7SS5Fd8AnQGUd5vPs+tTqO+zb0FgCRcV/Tg==
