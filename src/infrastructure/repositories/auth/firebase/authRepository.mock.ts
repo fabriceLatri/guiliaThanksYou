@@ -1,5 +1,8 @@
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
+const EMAIL_MOCKED = 'admin@gmail.com';
+const PWD_MOCKED = '1234';
+
 const mockedUser = {
   displayName: 'Admin',
   email: 'admin@gmail.com',
@@ -19,8 +22,30 @@ export class authFirebaseRepository {
     email: string,
     password: string,
   ): Promise<FirebaseAuthTypes.User | never> => {
-    if (email !== 'admin@gmail.com' || password !== '1234')
-      throw new Error('User not found');
-    return Promise.resolve(mockedUser as unknown as FirebaseAuthTypes.User);
+    try {
+      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED)
+        throw new Error('User not found');
+      return Promise.resolve(mockedUser as unknown as FirebaseAuthTypes.User);
+    } catch (error) {
+      if (error instanceof Error) throw error;
+
+      throw new Error('Unknown Error');
+    }
+  };
+
+  signUp = async (
+    email: string,
+    password: string,
+  ): Promise<FirebaseAuthTypes.User | never> => {
+    try {
+      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED)
+        throw new Error('Incorrect parameters');
+
+      return Promise.resolve(mockedUser as unknown as FirebaseAuthTypes.User);
+    } catch (error) {
+      if (error instanceof Error) throw error;
+
+      throw new Error('Unknown Error');
+    }
   };
 }
