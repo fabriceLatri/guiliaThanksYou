@@ -5,7 +5,7 @@
  * @format
  */
 
-import React, {useMemo} from 'react';
+import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {NativeBaseProvider} from 'native-base';
 import {Toast} from 'react-native-toast-message/lib/src/Toast';

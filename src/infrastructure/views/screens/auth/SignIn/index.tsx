@@ -47,6 +47,7 @@ export const SignIn = ({navigation}: SignInProps) => {
         <VStack space={3} mt="5">
           <FormInputController
             control={control}
+            testID="email-input"
             error={errors.email}
             label="Email"
             name={LoginFormFields.email}
@@ -55,6 +56,7 @@ export const SignIn = ({navigation}: SignInProps) => {
           />
           <FormInputController
             control={control}
+            testID="password-input"
             error={errors.password}
             label="Mot de passe"
             name={LoginFormFields.password}
@@ -72,7 +74,11 @@ export const SignIn = ({navigation}: SignInProps) => {
               Mot de passe oublié?
             </Link>
           </FormInputController>
-          <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
+          <Button
+            mt="2"
+            colorScheme="indigo"
+            onPress={onSubmit}
+            testID="signIn-submit-btn">
             Connexion
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>

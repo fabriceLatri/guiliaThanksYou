@@ -22,12 +22,13 @@ interface Props<FieldsType extends FieldValues>
   extends FormInputControllerProps<FieldsType> {
   label?: string;
   placeholder?: string;
-  type?: 'text' | 'password' | undefined;
+  type?: 'text' | 'password';
   variant?: ResponsiveValue<
-    'outline' | 'rounded' | (string & {}) | 'unstyled' | 'underlined' | 'filled'
+    'outline' | 'rounded' | string | 'unstyled' | 'underlined' | 'filled'
   >;
   required?: boolean;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
+  testID?: string;
 }
 
 export const FormInputController = <FieldsType extends FieldValues>({
@@ -42,6 +43,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
   children,
   required,
   autoCapitalize,
+  testID,
 }: PropsWithChildren<Props<FieldsType>>) => {
   const isInvalid = error != null;
   const isRequired = (rules != null && 'required' in rules) || !!required;
@@ -61,6 +63,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
               onChangeText={val => onChange(val)}
               type={type}
               variant={variant}
+              testID={testID}
               autoCapitalize={autoCapitalize ?? 'none'}
             />
           )}

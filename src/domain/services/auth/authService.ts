@@ -1,18 +1,18 @@
 import {IAuthService} from '@domain/models/interface';
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
-import {AuthError} from '@domain/models/errors/auth/authError';
-import {Toast} from 'react-native-toast-message/lib/src/Toast';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {CatchAll} from '@infrastructure/decorators/tryCatch';
 
 export class AuthService implements IAuthService {
   constructor(private repository: IAuthRepository) {}
 
-  signInAsync = async (
+  @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
+  async signInAsync(
     email: string,
     password: string,
-  ): Promise<FirebaseAuthTypes.User> => {
+  ): Promise<FirebaseAuthTypes.User> {
     return await this.repository.signIn(email, password);
-  };
+  }
 
   signUpAsync = async (
     email: string,

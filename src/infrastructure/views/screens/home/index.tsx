@@ -7,7 +7,7 @@ export const Home = () => {
 
   return (
     <Center style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Home Screen</Text>
+      <Text testID="home-screen-text">Home Screen</Text>
       <Button onPress={signOut}>Log Out</Button>
     </Center>
   );
