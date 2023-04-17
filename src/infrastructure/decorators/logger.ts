@@ -1,41 +1,10 @@
-// export function Logger(deprecationReason: string) {
-//   return (
-//     target: any,
-//     propertyKey: string,
-//     descriptor: TypedPropertyDescriptor<(...args: any[]) => any>,
-//   ) => {
-//     let originalMethod = descriptor.value;
-//     descriptor.value = function (...args: any[]) {
-//       // whatever code suits you here...
-//       // dont use "this", use "target"
-//       //before
-//       console.log(
-//         `${propertyKey} method called with args: ${JSON.stringify(args)}`,
-//       );
-
-//       let result = originalMethod?.apply(target, args);
-
-//       //after
-//       console.log(
-//         `${propertyKey} method return value: ${JSON.stringify(result)}`,
-//       );
-
-//       return result;
-//     };
-
-//     Object.defineProperty(target, propertyKey, {
-//       value: descriptor.value,
-//       configurable: true,
-//       writable: true,
-//     });
-
-//     return descriptor.value as any;
+// export function Logger() {
+//   return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+//     console.log(descriptor?.value);
 //     // return {
 //     //   get() {
 //     //     const wrapperFn = (...args: any[]) => {
-//     //       console.warn(
-//     //         `Method ${propertyKey} is deprecated with reason: ${deprecationReason}}`,
-//     //       );
+//     //       console.warn(`Method ${propertyKey} is testing for logger}`);
 //     //       console.log(descriptor);
 //     //       descriptor?.value?.apply(target, args);
 //     //     };
@@ -45,33 +14,33 @@
 //     //       configurable: false,
 //     //       writable: true,
 //     //     });
-//     //     return wrapperFn;
+//     //     return wrapperFn as any;
 //     //   },
-//     // };
-
-//     // console.log('Hello:', descriptor);
-//     // const targetMethod = descriptor.value;
-
-//     // descriptor.value = function (...args: any[]) {
-//     //   console.log('Hello');
-//     //   return targetMethod.apply(this, args);
 //     // };
 //   };
 // }
 
 export function Logger() {
-  return function (
-    target: any,
-    propertyKey: string,
+  return function <T>(
+    target: T,
+    propertyKey: keyof T,
     descriptor: PropertyDescriptor,
   ) {
-    const original = descriptor.value;
-
+    const originalMethod = descriptor.value;
     descriptor.value = function (...args: any[]) {
-      console.log('params: ', ...args);
-      const result = original.call(this, ...args);
-      console.log('result: ', result);
-      return result;
+      console.log(
+        `${
+          propertyKey as string
+        } method using with with ${args.toString()} arguments`,
+      );
+
+      const result = originalMethod.apply(this, args);
+
+      console.log(
+        `${propertyKey as string} method result: ${(result as any).toString()}`,
+      );
     };
+
+    return descriptor;
   };
 }
