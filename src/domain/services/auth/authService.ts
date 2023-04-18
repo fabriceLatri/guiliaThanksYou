@@ -1,11 +1,13 @@
 import {IAuthService} from '@domain/models/interface';
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {CatchAll} from '@infrastructure/decorators/tryCatch';
+import {CatchAll} from '@domain/decorators/tryCatch';
+import {Measure} from '@domain/decorators/measure';
 
 export class AuthService implements IAuthService {
   constructor(private repository: IAuthRepository) {}
 
+  @Measure()
   @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
   async signInAsync(
     email: string,

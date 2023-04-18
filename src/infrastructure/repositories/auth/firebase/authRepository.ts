@@ -2,7 +2,7 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
 import {Logger} from '@infrastructure/decorators/logger';
-import {CatchAll} from '@infrastructure/decorators/tryCatch';
+import {CatchAll} from '@domain/decorators/tryCatch';
 
 export class authFirebaseRepository implements IAuthRepository {
   // @CatchAll((err, ctx) => console.log(ctx, err))
