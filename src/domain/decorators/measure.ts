@@ -1,25 +1,48 @@
 import {roundTo} from '@domain/helpers';
 
 export const Measure =
-  () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-    // Save a reference to the original method
-    const originalMethod = descriptor.value;
+  () => (originalMethod: any, context: ClassMethodDecoratorContext) => {
+    const {name} = context;
+    const methodName = String(name);
 
-    // Rewrite original method in a wrapper
-    descriptor.value = function (...args: any[]) {
+    function wrapperFn(this: any, ...args: any[]) {
       const start = performance.now();
       const result = originalMethod.apply(this, args);
       const end = performance.now();
 
       console.info(
-        `${propertyKey} method executed in ${roundTo(
+        `${methodName} method executed in ${roundTo(
           end - start,
           2,
         )} milliseconds`,
       );
 
       return result;
-    };
+    }
 
-    return descriptor;
+    return wrapperFn;
   };
+
+// export const Measure =
+//   () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+//     // Save a reference to the original method
+//     const originalMethod = descriptor.value;
+
+//     // Rewrite original method in a wrapper
+//     descriptor.value = function (...args: any[]) {
+//       const start = performance.now();
+//       const result = originalMethod.apply(this, args);
+//       const end = performance.now();
+
+//       console.info(
+//         `${propertyKey} method executed in ${roundTo(
+//           end - start,
+//           2,
+//         )} milliseconds`,
+//       );
+
+//       return result;
+//     };
+
+//     return descriptor;
+//   };

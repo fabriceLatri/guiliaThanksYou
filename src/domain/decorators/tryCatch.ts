@@ -1,12 +1,10 @@
 type HandlerFunction = (error: Error, ctx: any) => void;
 
-export const Catch = (errorType: any, handler: HandlerFunction): any => {
-  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
-    // Save a reference to the original method
-    const originalMethod = descriptor.value;
-
+export const Catch =
+  (errorType: any, handler: HandlerFunction): any =>
+  (originalMethod: any, context: ClassMethodDecoratorContext) => {
     // Rewrite original method with try/catch wrapper
-    descriptor.value = function (...args: any[]) {
+    function wrapperFn(this: any, ...args: any[]) {
       try {
         const result = originalMethod.apply(this, args);
 
@@ -23,11 +21,10 @@ export const Catch = (errorType: any, handler: HandlerFunction): any => {
       } catch (error) {
         _handleError(this, errorType, handler, error as Error);
       }
-    };
+    }
 
-    return descriptor;
+    return wrapperFn;
   };
-};
 
 export const CatchAll = (handler: HandlerFunction): any =>
   Catch(Error, handler);
