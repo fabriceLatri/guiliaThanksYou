@@ -1,9 +1,7 @@
 {
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "target": "ES5",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "target": "ESNext",
     "baseUrl": ".",
     "paths": {
       "@domain": ["src/domain"],
