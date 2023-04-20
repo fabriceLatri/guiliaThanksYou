@@ -66,6 +66,7 @@ const authSlice = createSlice({
 
         return {
           ...state,
+          loading: false,
           error: payload as AuthError,
         };
       })

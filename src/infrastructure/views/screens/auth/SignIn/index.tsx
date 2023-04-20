@@ -20,7 +20,7 @@ import {
 } from '@infrastructure/views/screens/auth/SignIn/types';
 
 export const SignIn = ({navigation}: SignInProps) => {
-  const {control, errors, onSubmit} = useSignIn();
+  const {control, errors, onSubmit, loading} = useSignIn();
   return (
     <Center w="100%">
       <Box safeArea p="2" py="8" w="90%">
@@ -76,6 +76,8 @@ export const SignIn = ({navigation}: SignInProps) => {
           </FormInputController>
           <Button
             mt="2"
+            isLoading={loading}
+            isLoadingText="Chargement..."
             colorScheme="indigo"
             onPress={onSubmit}
             testID="signIn-submit-btn">
