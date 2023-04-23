@@ -1,5 +1,8 @@
 export type RootStackParamsList = {
-  SignIn: undefined;
-  SignUp: undefined;
-  Home: undefined;
+  SIGN_IN: undefined;
+  SIGN_UP: undefined;
+};
+
+export type RootBottomTabParamsList = {
+  HOME: undefined;
 };

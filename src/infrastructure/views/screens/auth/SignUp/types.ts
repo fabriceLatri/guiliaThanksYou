@@ -4,8 +4,12 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {RootStackParamsList} from '@infrastructure/router/types';
 import {signUpValidatorSchema} from '@infrastructure/views/screens/auth/SignUp/validator';
+import {Paths} from '@infrastructure/router/enums/paths';
 
-export type SignUpProps = NativeStackScreenProps<RootStackParamsList, 'SignUp'>;
+export type SignUpProps = NativeStackScreenProps<
+  RootStackParamsList,
+  Paths.SIGN_UP
+>;
 
 export type SignUpFormData = yup.InferType<typeof signUpValidatorSchema>;
 

@@ -18,6 +18,7 @@ import {
   LoginFormFields,
   SignInProps,
 } from '@infrastructure/views/screens/auth/SignIn/types';
+import {Paths} from '@infrastructure/router/enums/paths';
 
 export const SignIn = ({navigation}: SignInProps) => {
   const {control, errors, onSubmit, loading} = useSignIn();
@@ -99,7 +100,7 @@ export const SignIn = ({navigation}: SignInProps) => {
                 fontSize: 'sm',
               }}
               onPress={() => {
-                navigation.navigate('SignUp');
+                navigation.navigate(Paths.SIGN_UP);
               }}>
               S'enregistrer
             </Link>

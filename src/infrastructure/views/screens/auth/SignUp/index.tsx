@@ -16,6 +16,7 @@ import {
 } from '@infrastructure/views/screens/auth/SignUp/types';
 import {useSignUp} from '@infrastructure/views/screens/auth/SignUp/hooks/useSignUp';
 import {FormInputController} from '@infrastructure/views/components/forms/formInputController';
+import {Paths} from '@infrastructure/router/enums/paths';
 
 export const SignUp = ({navigation}: SignUpProps) => {
   const {control, onSubmit, errors, loading} = useSignUp();
@@ -93,7 +94,7 @@ export const SignUp = ({navigation}: SignUpProps) => {
                 fontSize: 'sm',
               }}
               onPress={() => {
-                navigation.navigate('SignIn');
+                navigation.navigate(Paths.SIGN_IN);
               }}>
               Se connecter
             </Link>
