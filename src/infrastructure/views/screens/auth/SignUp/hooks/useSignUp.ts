@@ -7,7 +7,7 @@ import type {
   SignUpHook,
 } from '@infrastructure/views/screens/auth/SignUp/types';
 import {signUpValidatorSchema} from '../validator';
-import {useAppDispatch} from '@infrastructure/RTK/hooks';
+import {useAppDispatch, useAppSelector} from '@infrastructure/RTK/hooks';
 import {useToast} from '@infrastructure/helpers/hooks/toast';
 import {useCallback} from 'react';
 import {AuthError} from '@domain/models/errors/auth/authError';
@@ -22,7 +22,10 @@ export const useSignUp = (): SignUpHook => {
     resolver: yupResolver(signUpValidatorSchema),
   });
 
+  // RTK
   const dispatch = useAppDispatch();
+  const {loading} = useAppSelector(state => state.auth);
+
   const {displayErrorToast} = useToast();
 
   const onSubmit = useCallback(
@@ -41,5 +44,6 @@ export const useSignUp = (): SignUpHook => {
     control,
     onSubmit,
     errors,
+    loading,
   };
 };

@@ -26,6 +26,7 @@ export type SignUpHook = {
     password: string;
     confirmPassword: string;
   }>;
+  loading: boolean;
 };
 
 export enum SignUpFormFields {

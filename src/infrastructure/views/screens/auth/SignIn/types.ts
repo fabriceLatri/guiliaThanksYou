@@ -23,6 +23,7 @@ export type SignInHook = {
     email: string;
     password: string;
   }>;
+  loading: boolean;
 };
 
 export enum LoginFormFields {

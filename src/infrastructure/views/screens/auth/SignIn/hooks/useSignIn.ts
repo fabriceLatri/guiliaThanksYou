@@ -7,7 +7,7 @@ import type {
 } from '@infrastructure/views/screens/auth/SignIn/types';
 import {signInValidatorSchema} from '@infrastructure/views/screens/auth/SignIn/validator';
 import {signInThunk} from '@infrastructure/RTK/auth/thunks';
-import {useAppDispatch} from '@infrastructure/RTK/hooks';
+import {useAppDispatch, useAppSelector} from '@infrastructure/RTK/hooks';
 import {AuthError} from '@domain/models/errors/auth/authError';
 import {useToast} from '@infrastructure/helpers/hooks/toast';
 
@@ -21,6 +21,7 @@ export const useSignIn = (): SignInHook => {
   });
 
   const dispatch = useAppDispatch();
+  const {loading} = useAppSelector(state => state.auth);
   const {displayErrorToast} = useToast();
 
   const onSubmit = useCallback(
@@ -39,5 +40,6 @@ export const useSignIn = (): SignInHook => {
     control,
     errors,
     onSubmit,
+    loading,
   };
 };
