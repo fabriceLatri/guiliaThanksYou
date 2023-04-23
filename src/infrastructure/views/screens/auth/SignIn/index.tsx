@@ -10,7 +10,7 @@ import {
   VStack,
 } from 'native-base';
 
-import {FormInputController} from '@infrastructure/views/shared/UI/formInputController';
+import {FormInputController} from '@infrastructure/views/components/forms/formInputController';
 
 import {useSignIn} from './hooks/useSignIn';
 

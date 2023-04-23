@@ -15,10 +15,10 @@ import {
   type SignUpProps,
 } from '@infrastructure/views/screens/auth/SignUp/types';
 import {useSignUp} from '@infrastructure/views/screens/auth/SignUp/hooks/useSignUp';
-import {FormInputController} from '@infrastructure/views/shared/UI/formInputController';
+import {FormInputController} from '@infrastructure/views/components/forms/formInputController';
 
 export const SignUp = ({navigation}: SignUpProps) => {
-  const {control, onSubmit, errors} = useSignUp();
+  const {control, onSubmit, errors, loading} = useSignUp();
 
   return (
     <Center w="100%">
@@ -69,7 +69,12 @@ export const SignUp = ({navigation}: SignUpProps) => {
             variant="underlined"
             required
           />
-          <Button mt="2" colorScheme="indigo" onPress={onSubmit}>
+          <Button
+            isLoading={loading}
+            isLoadingText="Chargement..."
+            mt="2"
+            colorScheme="indigo"
+            onPress={onSubmit}>
             S'enregistrer
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>
