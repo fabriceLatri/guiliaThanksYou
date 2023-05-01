@@ -62,6 +62,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
               onBlur={onBlur}
               onChangeText={val => onChange(val)}
               type={type}
+              textContentType={type === 'password' ? 'oneTimeCode' : undefined}
               variant={variant}
               testID={testID}
               autoCapitalize={autoCapitalize ?? 'none'}

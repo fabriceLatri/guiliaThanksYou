@@ -99,6 +99,7 @@ export const SignIn = ({navigation}: SignInProps) => {
                 fontWeight: 'medium',
                 fontSize: 'sm',
               }}
+              testID="signup-link"
               onPress={() => {
                 navigation.navigate(Paths.SIGN_UP);
               }}>

@@ -48,6 +48,7 @@ export const SignUp = ({navigation}: SignUpProps) => {
             control={control}
             error={errors.email}
             label="Email"
+            testID="email-input"
             name={SignUpFormFields.email}
             variant="underlined"
             required
@@ -58,6 +59,7 @@ export const SignUp = ({navigation}: SignUpProps) => {
             label="Mot de passe"
             name={SignUpFormFields.password}
             type="password"
+            testID="password-input"
             variant="underlined"
             required
           />
@@ -66,12 +68,14 @@ export const SignUp = ({navigation}: SignUpProps) => {
             error={errors.confirmPassword}
             label="Confirmation du mot de passe"
             name={SignUpFormFields.confirmPassword}
+            testID="confirm-password-input"
             type="password"
             variant="underlined"
             required
           />
           <Button
             isLoading={loading}
+            testID="signup-submit-btn"
             isLoadingText="Chargement..."
             mt="2"
             colorScheme="indigo"
