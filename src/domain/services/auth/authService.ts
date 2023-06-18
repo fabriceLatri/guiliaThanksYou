@@ -16,14 +16,18 @@ export class AuthService implements IAuthService {
     return await this.repository.signIn(email, password);
   }
 
-  signUpAsync = async (
+  @Measure()
+  @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
+  async signUpAsync(
     email: string,
     password: string,
-  ): Promise<FirebaseAuthTypes.User> => {
+  ): Promise<FirebaseAuthTypes.User> {
     return await this.repository.signUp(email, password);
-  };
+  }
 
-  signOutAsync = async (): Promise<void> => {
+  @Measure()
+  @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
+  async signOutAsync(): Promise<void> {
     await this.repository.signOut();
-  };
+  }
 }
