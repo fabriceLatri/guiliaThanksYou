@@ -1,13 +1,11 @@
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
-import {CatchAll} from '@domain/decorators/tryCatch';
+import {JSONWrapper} from '@infrastructure/helpers/utils/JSONWrapper';
+import {User} from '@domain/models/entities/User';
 
 export class authFirebaseRepository implements IAuthRepository {
-  async signIn(
-    email: string,
-    password: string,
-  ): Promise<FirebaseAuthTypes.User> {
+  async signIn(email: string, password: string): Promise<User> {
     const userCredentials: FirebaseAuthTypes.UserCredential =
       await auth().signInWithEmailAndPassword(email, password);
 
@@ -21,22 +19,30 @@ export class authFirebaseRepository implements IAuthRepository {
       console.log(claims);
     }
 
-    return user.toJSON() as FirebaseAuthTypes.User;
+    return JSONWrapper.parse(User, user.toJSON()) as User;
   }
 
-  async signUp(
-    email: string,
-    password: string,
-  ): Promise<FirebaseAuthTypes.User> {
+  async signUp(email: string, password: string): Promise<User> {
     const userCredentials: FirebaseAuthTypes.UserCredential =
       await auth().createUserWithEmailAndPassword(email, password);
 
     const {user} = userCredentials;
 
-    return user.toJSON() as FirebaseAuthTypes.User;
+    return JSONWrapper.parse(User, user.toJSON()) as User;
   }
 
-  async signOut(): Promise<void | never> {
+  async signOut(): Promise<void> {
     return await auth().signOut();
+  }
+
+  async getUserIsAuthenticatedAsync(): Promise<User | null> {
+    const result: FirebaseAuthTypes.User | null = await new Promise(resolve => {
+      auth().onAuthStateChanged(user => {
+        return resolve(user);
+      });
+    });
+
+    if (!result) return null;
+    return JSONWrapper.parse(User, result.toJSON()) as User;
   }
 }

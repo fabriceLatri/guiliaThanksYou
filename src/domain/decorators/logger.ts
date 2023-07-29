@@ -37,7 +37,7 @@ export function Logger() {
       const result = originalMethod.apply(this, args);
 
       console.log(
-        `${propertyKey as string} method result: ${(result as any).toString()}`,
+        `${propertyKey as string} method result: ${result.toString()}`,
       );
     };
 

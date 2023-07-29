@@ -15,7 +15,7 @@ import {Provider} from 'react-redux';
 import {store} from '@infrastructure/RTK/store';
 import {useToast} from '@infrastructure/helpers/hooks/toast';
 
-function App(): JSX.Element {
+function App(): React.JSX.Element {
   const {toastConfig} = useToast();
 
   return (
