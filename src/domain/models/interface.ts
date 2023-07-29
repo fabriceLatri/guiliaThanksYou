@@ -1,18 +1,12 @@
 // Interfaces
 
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import {User} from '@domain/models/entities/User';
 
 export interface IAuthService {
-  signInAsync: (
-    email: string,
-    password: string,
-  ) => Promise<FirebaseAuthTypes.User>;
-  signUpAsync: (
-    email: string,
-    password: string,
-  ) => Promise<FirebaseAuthTypes.User>;
+  signInAsync: (email: string, password: string) => Promise<User>;
+  signUpAsync: (email: string, password: string) => Promise<User>;
   signOutAsync: () => Promise<void>;
-  getUserIsAuthenticatedAsync: () => Promise<FirebaseAuthTypes.User | null>;
+  getUserIsAuthenticatedAsync: () => Promise<User | null>;
 }
 
 // Types

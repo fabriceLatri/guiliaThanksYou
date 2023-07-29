@@ -23,8 +23,8 @@ import {roundTo} from '@domain/helpers';
 //     return wrapperFn;
 //   };
 
-export const Measure =
-  () => (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
+export const Measure = () => {
+  return (target: any, propertyKey: string, descriptor: PropertyDescriptor) => {
     // Save a reference to the original method
     const originalMethod = descriptor.value;
 
@@ -46,3 +46,4 @@ export const Measure =
 
     return descriptor;
   };
+};

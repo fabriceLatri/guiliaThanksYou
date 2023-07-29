@@ -2,6 +2,7 @@
   "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "@domain": ["src/domain"],

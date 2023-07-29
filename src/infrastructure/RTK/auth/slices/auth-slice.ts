@@ -26,7 +26,7 @@ const authSlice = createSlice({
     });
     builder.addCase(signUpThunk.fulfilled, (state, action) => {
       // Add user to the state array
-      const {uid: id, email, isAnonymous} = action.payload;
+      const {id, email, isAnonymous} = action.payload;
 
       if (!email) return state;
 
@@ -50,7 +50,7 @@ const authSlice = createSlice({
     });
     builder.addCase(signInThunk.fulfilled, (state, action) => {
       // Add user to the state array
-      const {uid: id, email, isAnonymous} = action.payload;
+      const {id, email, isAnonymous} = action.payload;
 
       if (!email) return state;
 
@@ -88,7 +88,7 @@ const authSlice = createSlice({
     builder.addCase(getUserIsAuthenticatedThunk.fulfilled, (state, action) => {
       if (!action.payload) return initialState;
       // Add user to the state array
-      const {uid: id, email, isAnonymous} = action.payload;
+      const {id, email, isAnonymous} = action.payload;
 
       if (!email) return state;
 
