@@ -12,6 +12,7 @@ export interface IAuthService {
     password: string,
   ) => Promise<FirebaseAuthTypes.User>;
   signOutAsync: () => Promise<void>;
+  getUserIsAuthenticatedAsync: () => Promise<FirebaseAuthTypes.User | null>;
 }
 
 // Types

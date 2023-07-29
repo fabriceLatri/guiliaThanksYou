@@ -5,7 +5,7 @@ import {CatchAll} from '@domain/decorators/tryCatch';
 import {Measure} from '@domain/decorators/measure';
 
 export class AuthService implements IAuthService {
-  constructor(private repository: IAuthRepository) {}
+  constructor(private readonly repository: IAuthRepository) {}
 
   @Measure()
   @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
@@ -29,5 +29,11 @@ export class AuthService implements IAuthService {
   @CatchAll((err: Error, ctx: any) => console.log(ctx, err))
   async signOutAsync(): Promise<void> {
     await this.repository.signOut();
+  }
+
+  @Measure()
+  @CatchAll((err: Error, ctx: any) => console.log(err, ctx))
+  async getUserIsAuthenticatedAsync(): Promise<FirebaseAuthTypes.User | null> {
+    return await this.repository.getUserIsAuthenticatedAsync();
   }
 }

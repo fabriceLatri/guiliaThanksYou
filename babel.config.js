@@ -3,7 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['module:metro-react-native-babel-preset'],
     plugins: [
-      ['@babel/plugin-proposal-decorators', {version: '2023-01'}],
+      ['@babel/plugin-proposal-decorators', {version: 'legacy'}],
       ['@babel/plugin-proposal-class-properties'],
       ['@babel/plugin-proposal-class-static-block'],
       [

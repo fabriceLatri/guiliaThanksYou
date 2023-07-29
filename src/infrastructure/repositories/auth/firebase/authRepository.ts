@@ -1,7 +1,6 @@
 import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
-import {CatchAll} from '@domain/decorators/tryCatch';
 
 export class authFirebaseRepository implements IAuthRepository {
   async signIn(
@@ -36,7 +35,19 @@ export class authFirebaseRepository implements IAuthRepository {
     return user.toJSON() as FirebaseAuthTypes.User;
   }
 
-  async signOut(): Promise<void | never> {
+  async signOut(): Promise<void> {
     return await auth().signOut();
+  }
+
+  async getUserIsAuthenticatedAsync(): Promise<FirebaseAuthTypes.User | null> {
+    const result: FirebaseAuthTypes.User | null = await new Promise(
+      (resolve, reject) => {
+        auth().onAuthStateChanged(user => {
+          return resolve(user);
+        });
+      },
+    );
+
+    return result;
   }
 }

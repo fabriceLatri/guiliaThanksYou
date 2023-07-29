@@ -3,6 +3,7 @@ import {
   signInThunk,
   signOutThunk,
   signUpThunk,
+  getUserIsAuthenticatedThunk,
 } from '@infrastructure/RTK/auth/thunks';
 import {AuthState} from '@infrastructure/RTK/auth/slices/types';
 import {AuthError} from '@domain/models/errors/auth/authError';
@@ -81,6 +82,32 @@ const authSlice = createSlice({
           error: payload as AuthError,
         };
       });
+    builder.addCase(getUserIsAuthenticatedThunk.pending, state => {
+      return {...state, loading: true};
+    });
+    builder.addCase(getUserIsAuthenticatedThunk.fulfilled, (state, action) => {
+      if (!action.payload) return initialState;
+      // Add user to the state array
+      const {uid: id, email, isAnonymous} = action.payload;
+
+      if (!email) return state;
+
+      return {
+        loading: false,
+        id,
+        email,
+        isAnonymous,
+      } as AuthState;
+    });
+    builder.addCase(getUserIsAuthenticatedThunk.rejected, (state, action) => {
+      const {payload} = action;
+
+      return {
+        ...state,
+        loading: false,
+        error: payload as AuthError,
+      };
+    });
   },
 });
 

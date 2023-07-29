@@ -47,3 +47,16 @@ export const signOutThunk = createAsyncThunk(
     }
   },
 );
+
+export const getUserIsAuthenticatedThunk = createAsyncThunk(
+  'auth/getUserIsAuthenticated',
+  async (_, {rejectWithValue}) => {
+    try {
+      return await authService.getUserIsAuthenticatedAsync();
+    } catch (error) {
+      return rejectWithValue(
+        new AuthError(error instanceof Error ? error.message : 'Unknown Error'),
+      );
+    }
+  },
+);
