@@ -3,8 +3,7 @@ export class MathematicalError extends Error {
 
   constructor(message = '') {
     super(message);
-    this.mathMsg =
-      message !== '' ? `Mathematical Error: ${message}` : 'Mathematical Error!';
+    this.mathMsg = message !== '' ? `Mathematical Error: ${message}` : 'Mathematical Error!';
   }
 
   getMessage(): string {

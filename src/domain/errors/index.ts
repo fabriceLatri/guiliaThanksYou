@@ -1,3 +1,3 @@
-import {MathematicalError} from '@domain/errors/maths/index';
+import { MathematicalError } from '@domain/errors/maths/index';
 
-export {MathematicalError};
+export { MathematicalError };

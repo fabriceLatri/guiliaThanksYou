@@ -21,24 +21,14 @@
 // }
 
 export function Logger() {
-  return function <T>(
-    target: T,
-    propertyKey: keyof T,
-    descriptor: PropertyDescriptor,
-  ) {
+  return function <T> (target: T, propertyKey: keyof T, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
     descriptor.value = function (...args: any[]) {
-      console.log(
-        `${
-          propertyKey as string
-        } method using with with ${args.toString()} arguments`,
-      );
+      console.log(`${propertyKey as string} method using with with ${args.toString()} arguments`);
 
       const result = originalMethod.apply(this, args);
 
-      console.log(
-        `${propertyKey as string} method result: ${result.toString()}`,
-      );
+      console.log(`${propertyKey as string} method result: ${result.toString()}`);
     };
 
     return descriptor;

@@ -1,31 +1,19 @@
-import {FirebaseAuthTypes} from '@react-native-firebase/auth';
+import { IUser } from '@domain/models/entities/User';
 
 const EMAIL_MOCKED = 'admin@gmail.com';
 const PWD_MOCKED = '1234';
 
-const mockedUser = {
-  displayName: 'Admin',
+const mockedUser: IUser = {
   email: 'admin@gmail.com',
-  emailVerified: true,
   isAnonymous: false,
-  metadata: null,
-  multiFactor: null,
-  phoneNumber: null,
-  photoURL: null,
-  providerData: [],
-  providerId: '',
-  uid: '12345',
+  id: '12345',
 };
 
 export class authFirebaseRepository {
-  signIn = async (
-    email: string,
-    password: string,
-  ): Promise<FirebaseAuthTypes.User | never> => {
+  signIn = async (email: string, password: string): Promise<IUser> => {
     try {
-      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED)
-        throw new Error('User not found');
-      return Promise.resolve(mockedUser as unknown as FirebaseAuthTypes.User);
+      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED) throw new Error('User not found');
+      return Promise.resolve(mockedUser);
     } catch (error) {
       if (error instanceof Error) throw error;
 
@@ -33,15 +21,11 @@ export class authFirebaseRepository {
     }
   };
 
-  signUp = async (
-    email: string,
-    password: string,
-  ): Promise<FirebaseAuthTypes.User | never> => {
+  signUp = async (email: string, password: string): Promise<IUser> => {
     try {
-      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED)
-        throw new Error('Incorrect parameters');
+      if (email !== EMAIL_MOCKED || password !== PWD_MOCKED) throw new Error('Incorrect parameters');
 
-      return Promise.resolve(mockedUser as unknown as FirebaseAuthTypes.User);
+      return Promise.resolve(mockedUser);
     } catch (error) {
       if (error instanceof Error) throw error;
 

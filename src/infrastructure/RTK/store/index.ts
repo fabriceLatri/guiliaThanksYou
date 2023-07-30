@@ -1,14 +1,13 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '@infrastructure/RTK/auth/slices/auth-slice';
 
 export const store = configureStore({
   reducer: {
     auth: authSlice.reducer,
   },
-  middleware: curryGetDefaultMiddleware =>
-    curryGetDefaultMiddleware({
-      serializableCheck: false,
-    }),
+  middleware: (curryGetDefaultMiddleware) => curryGetDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
 
 // // Infer the `RootState` and `AppDispatch` types from the store itself

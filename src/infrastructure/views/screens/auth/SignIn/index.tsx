@@ -1,27 +1,18 @@
 import React from 'react';
 import {
-  Box,
-  Button,
-  Center,
-  HStack,
-  Heading,
-  Link,
-  Text,
-  VStack,
+  Box, Button, Center, HStack, Heading, Link, Text, VStack,
 } from 'native-base';
 
-import {FormInputController} from '@infrastructure/views/components/forms/formInputController';
+import { FormInputController } from '@infrastructure/views/components/forms/formInputController';
 
-import {useSignIn} from './hooks/useSignIn';
+import { LoginFormFields, SignInProps } from '@infrastructure/views/screens/auth/SignIn/types';
+import { Paths } from '@infrastructure/router/enums/paths';
+import { useSignIn } from '@infrastructure/views/screens/auth/SignIn/hooks/useSignIn';
 
-import {
-  LoginFormFields,
-  SignInProps,
-} from '@infrastructure/views/screens/auth/SignIn/types';
-import {Paths} from '@infrastructure/router/enums/paths';
-
-export const SignIn = ({navigation}: SignInProps) => {
-  const {control, errors, onSubmit, loading} = useSignIn();
+export function SignIn({ navigation }: SignInProps) {
+  const {
+    control, errors, onSubmit, loading,
+  } = useSignIn();
   return (
     <Center w="100%">
       <Box safeArea p="2" py="8" w="90%">
@@ -31,7 +22,8 @@ export const SignIn = ({navigation}: SignInProps) => {
           color="coolGray.800"
           _dark={{
             color: 'warmGray.50',
-          }}>
+          }}
+        >
           Bienvenue
         </Heading>
         <Heading
@@ -41,7 +33,8 @@ export const SignIn = ({navigation}: SignInProps) => {
           }}
           color="coolGray.600"
           fontWeight="medium"
-          size="xs">
+          size="xs"
+        >
           Connectez-vous pour continuer!
         </Heading>
 
@@ -63,7 +56,8 @@ export const SignIn = ({navigation}: SignInProps) => {
             name={LoginFormFields.password}
             variant="underlined"
             type="password"
-            required>
+            required
+          >
             <Link
               _text={{
                 fontSize: 'xs',
@@ -71,7 +65,8 @@ export const SignIn = ({navigation}: SignInProps) => {
                 color: 'indigo.500',
               }}
               alignSelf="flex-end"
-              mt="1">
+              mt="1"
+            >
               Mot de passe oublié?
             </Link>
           </FormInputController>
@@ -81,7 +76,8 @@ export const SignIn = ({navigation}: SignInProps) => {
             isLoadingText="Chargement..."
             colorScheme="indigo"
             onPress={onSubmit}
-            testID="signIn-submit-btn">
+            testID="signIn-submit-btn"
+          >
             Connexion
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>
@@ -90,7 +86,8 @@ export const SignIn = ({navigation}: SignInProps) => {
               color="coolGray.600"
               _dark={{
                 color: 'warmGray.200',
-              }}>
+              }}
+            >
               Je suis un nouvel utilisateur.
             </Text>
             <Link
@@ -102,7 +99,8 @@ export const SignIn = ({navigation}: SignInProps) => {
               testID="signup-link"
               onPress={() => {
                 navigation.navigate(Paths.SIGN_UP);
-              }}>
+              }}
+            >
               S'enregistrer
             </Link>
           </HStack>
@@ -110,4 +108,4 @@ export const SignIn = ({navigation}: SignInProps) => {
       </Box>
     </Center>
   );
-};
+}

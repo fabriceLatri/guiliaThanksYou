@@ -1,4 +1,4 @@
-import {BaseToastProps} from 'react-native-toast-message';
+import { BaseToastProps } from 'react-native-toast-message';
 
 export type UseToastProps = {
   displayErrorToast: (message: string) => void;

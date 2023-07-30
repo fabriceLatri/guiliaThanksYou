@@ -1,16 +1,18 @@
 {
   "name": "giuliathanksyou",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "author": "Fabrice Latri",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --udid DB5A8247-4C51-4AE8-9BB7-9894CFBA9A3B",
-    "lint": "eslint .",
+    "lint": "prettier --write src && eslint src --ext tsx,ts",
     "start": "react-native start",
     "test": "jest",
     "detox:ios": "detox test --configuration ios.sim.debug",
     "detox:android": "detox test --configuration android.emu.debug",
-    "detox:test:mock": "MY_APP_MODE=mocked npx react-native start"
+    "detox:test:mock": "MY_APP_MODE=mocked npx react-native start",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.1.1",
@@ -51,12 +53,20 @@
     "@types/react": "^18.2.17",
     "@types/react-native-vector-icons": "^6.4.13",
     "@types/react-test-renderer": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
     "babel-jest": "^29.6.2",
     "babel-plugin-module-resolver": "^5.0.0",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "detox": "^20.11.1",
     "eslint": "^8.46.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.3",
     "jest": "^29.6.2",
+    "lint-staged": "^13.2.3",
     "metro-react-native-babel-preset": "0.77.0",
     "prettier": "^3.0.0",
     "react-devtools": "^4.28.0",
@@ -69,5 +79,19 @@
     "setupFilesAfterEnv": [
       "@testing-library/jest-native/extend-expect"
     ]
-  }
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": "yarn run lint --fix --quiet"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint-staged"
+    }
+  },
+  "contributors": [
+    {
+      "name": "Fabrice Latri",
+      "email": "fabrice.latri@hotmail.fr"
+    }
+  ]
 }

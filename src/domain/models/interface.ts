@@ -1,12 +1,10 @@
 // Interfaces
 
-import {User} from '@domain/models/entities/User';
+import { IUser } from '@domain/models/entities/User';
 
 export interface IAuthService {
-  signInAsync: (email: string, password: string) => Promise<User>;
-  signUpAsync: (email: string, password: string) => Promise<User>;
+  signInAsync: (email: string, password: string) => Promise<IUser>;
+  signUpAsync: (email: string, password: string) => Promise<IUser>;
   signOutAsync: () => Promise<void>;
-  getUserIsAuthenticatedAsync: () => Promise<User | null>;
+  getUserIsAuthenticatedAsync: () => Promise<IUser | null>;
 }
-
-// Types

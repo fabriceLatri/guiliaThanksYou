@@ -1,4 +1,4 @@
-import {TargetMap} from '@domain/interfaces';
+import { TargetMap } from '@domain/interfaces';
 
 /**
  * Options to be passed during transformation.
