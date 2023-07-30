@@ -6,17 +6,17 @@
  */
 
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider} from 'native-base';
-import {Toast} from 'react-native-toast-message/lib/src/Toast';
+import { NavigationContainer } from '@react-navigation/native';
+import { NativeBaseProvider } from 'native-base';
+import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
-import {Router} from '@infrastructure/router';
-import {Provider} from 'react-redux';
-import {store} from '@infrastructure/RTK/store';
-import {useToast} from '@infrastructure/helpers/hooks/toast';
+import { Router } from '@infrastructure/router';
+import { Provider } from 'react-redux';
+import { store } from '@infrastructure/RTK/store';
+import { useToast } from '@infrastructure/helpers/hooks/toast';
 
 function App(): React.JSX.Element {
-  const {toastConfig} = useToast();
+  const { toastConfig } = useToast();
 
   return (
     <Provider store={store}>

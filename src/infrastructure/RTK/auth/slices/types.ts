@@ -1,4 +1,4 @@
-import {AuthError} from '@domain/models/errors/auth/authError';
+import { AuthError } from '@domain/models/errors/auth/authError';
 
 export type AuthState = {
   loading: boolean;

@@ -1,25 +1,17 @@
 import React from 'react';
 import {
-  Center,
-  Box,
-  Heading,
-  VStack,
-  Button,
-  Text,
-  Link,
-  HStack,
+  Center, Box, Heading, VStack, Button, Text, Link, HStack,
 } from 'native-base';
 
-import {
-  SignUpFormFields,
-  type SignUpProps,
-} from '@infrastructure/views/screens/auth/SignUp/types';
-import {useSignUp} from '@infrastructure/views/screens/auth/SignUp/hooks/useSignUp';
-import {FormInputController} from '@infrastructure/views/components/forms/formInputController';
-import {Paths} from '@infrastructure/router/enums/paths';
+import { SignUpFormFields, type SignUpProps } from '@infrastructure/views/screens/auth/SignUp/types';
+import { useSignUp } from '@infrastructure/views/screens/auth/SignUp/hooks/useSignUp';
+import { FormInputController } from '@infrastructure/views/components/forms/formInputController';
+import { Paths } from '@infrastructure/router/enums/paths';
 
-export const SignUp = ({navigation}: SignUpProps) => {
-  const {control, onSubmit, errors, loading} = useSignUp();
+export function SignUp({ navigation }: SignUpProps) {
+  const {
+    control, onSubmit, errors, loading,
+  } = useSignUp();
 
   return (
     <Center w="100%">
@@ -30,7 +22,8 @@ export const SignUp = ({navigation}: SignUpProps) => {
           _dark={{
             color: 'warmGray.50',
           }}
-          fontWeight="semibold">
+          fontWeight="semibold"
+        >
           Bienvenue
         </Heading>
         <Heading
@@ -40,7 +33,8 @@ export const SignUp = ({navigation}: SignUpProps) => {
             color: 'warmGray.200',
           }}
           fontWeight="medium"
-          size="xs">
+          size="xs"
+        >
           Enregistrez-vous pour continuer!
         </Heading>
         <VStack space={3} mt="5">
@@ -79,7 +73,8 @@ export const SignUp = ({navigation}: SignUpProps) => {
             isLoadingText="Chargement..."
             mt="2"
             colorScheme="indigo"
-            onPress={onSubmit}>
+            onPress={onSubmit}
+          >
             S'enregistrer
           </Button>
           <HStack mt="6" justifyContent="center" space={1}>
@@ -88,7 +83,8 @@ export const SignUp = ({navigation}: SignUpProps) => {
               color="coolGray.600"
               _dark={{
                 color: 'warmGray.200',
-              }}>
+              }}
+            >
               Déjà inscrit ?
             </Text>
             <Link
@@ -99,7 +95,8 @@ export const SignUp = ({navigation}: SignUpProps) => {
               }}
               onPress={() => {
                 navigation.navigate(Paths.SIGN_IN);
-              }}>
+              }}
+            >
               Se connecter
             </Link>
           </HStack>
@@ -107,4 +104,4 @@ export const SignUp = ({navigation}: SignUpProps) => {
       </Box>
     </Center>
   );
-};
+}

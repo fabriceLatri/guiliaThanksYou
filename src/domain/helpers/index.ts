@@ -1,3 +1,3 @@
-import {roundTo} from '@domain/helpers/maths/index';
+import { roundTo } from '@domain/helpers/maths/index';
 
-export {roundTo};
+export { roundTo };

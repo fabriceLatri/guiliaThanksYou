@@ -1,4 +1,4 @@
-import {User} from '@domain/models/entities/User';
+import { User } from '@domain/models/entities/User';
 
 export interface IAuthRepository {
   signIn: (email: string, password: string) => Promise<User>;

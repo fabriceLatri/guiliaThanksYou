@@ -1,13 +1,8 @@
-import {FormControl, Input, VStack} from 'native-base';
-import {ResponsiveValue} from 'native-base/lib/typescript/components/types';
-import React, {PropsWithChildren} from 'react';
+import { FormControl, Input, VStack } from 'native-base';
+import { ResponsiveValue } from 'native-base/lib/typescript/components/types';
+import React, { PropsWithChildren } from 'react';
 import {
-  Control,
-  Controller,
-  FieldError,
-  FieldValues,
-  Path,
-  RegisterOptions,
+  Control, Controller, FieldError, FieldValues, Path, RegisterOptions,
 } from 'react-hook-form';
 
 interface FormInputControllerProps<FieldsType extends FieldValues> {
@@ -18,20 +13,17 @@ interface FormInputControllerProps<FieldsType extends FieldValues> {
   control: Control<FieldsType>;
 }
 
-interface Props<FieldsType extends FieldValues>
-  extends FormInputControllerProps<FieldsType> {
+interface Props<FieldsType extends FieldValues> extends FormInputControllerProps<FieldsType> {
   label?: string;
   placeholder?: string;
   type?: 'text' | 'password';
-  variant?: ResponsiveValue<
-    'outline' | 'rounded' | string | 'unstyled' | 'underlined' | 'filled'
-  >;
+  variant?: ResponsiveValue<'outline' | 'rounded' | string | 'unstyled' | 'underlined' | 'filled'>;
   required?: boolean;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters';
   testID?: string;
 }
 
-export const FormInputController = <FieldsType extends FieldValues>({
+export function FormInputController<FieldsType extends FieldValues>({
   variant,
   error,
   rules,
@@ -44,7 +36,7 @@ export const FormInputController = <FieldsType extends FieldValues>({
   required,
   autoCapitalize,
   testID,
-}: PropsWithChildren<Props<FieldsType>>) => {
+}: PropsWithChildren<Props<FieldsType>>) {
   const isInvalid = error != null;
   const isRequired = (rules != null && 'required' in rules) || !!required;
 
@@ -55,12 +47,12 @@ export const FormInputController = <FieldsType extends FieldValues>({
         <Controller
           control={control}
           name={name}
-          render={({field: {onChange, onBlur, value}}) => (
+          render={({ field: { onChange, onBlur, value } }) => (
             <Input
               placeholder={placeholder}
               value={value}
               onBlur={onBlur}
-              onChangeText={val => onChange(val)}
+              onChangeText={(val) => onChange(val)}
               type={type}
               textContentType={type === 'password' ? 'oneTimeCode' : undefined}
               variant={variant}
@@ -70,11 +62,9 @@ export const FormInputController = <FieldsType extends FieldValues>({
           )}
           rules={rules}
         />
-        {error != null && (
-          <FormControl.ErrorMessage>{error.message}</FormControl.ErrorMessage>
-        )}
+        {error != null && <FormControl.ErrorMessage>{error.message}</FormControl.ErrorMessage>}
       </FormControl>
       {children}
     </VStack>
   );
-};
+}

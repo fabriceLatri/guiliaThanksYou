@@ -1,10 +1,6 @@
-import {ClassTransformOptions} from '@domain/interfaces';
-import {ClassConstructor} from '@domain/types';
-import {
-  instanceToInstance,
-  instanceToPlain,
-  plainToInstance,
-} from 'class-transformer';
+import { ClassTransformOptions } from '@domain/interfaces';
+import { ClassConstructor } from '@domain/types';
+import { instanceToInstance, instanceToPlain, plainToInstance } from 'class-transformer';
 
 export abstract class JSONWrapper {
   public static stringnify<T>(
@@ -13,6 +9,7 @@ export abstract class JSONWrapper {
   ): Record<string, any> | Record<string, any>[] {
     return instanceToPlain(object, options);
   }
+
   public static parse<T, V>(
     cls: ClassConstructor<T>,
     plain: V | V[],
@@ -21,10 +18,7 @@ export abstract class JSONWrapper {
     return plainToInstance(cls, plain, options);
   }
 
-  public static instanceToInstance<T>(
-    object: T | T[],
-    options?: ClassTransformOptions,
-  ): T | T[] {
+  public static instanceToInstance<T>(object: T | T[], options?: ClassTransformOptions): T | T[] {
     return instanceToInstance(object, options);
   }
 }
