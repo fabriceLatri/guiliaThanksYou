@@ -2,7 +2,8 @@ import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {IAuthRepository} from '@domain/repositories/auth/authRepository';
 import {JSONWrapper} from '@infrastructure/helpers/utils/JSONWrapper';
-import {User} from '@domain/models/entities/User';
+import {User} from '@infrastructure/entities/User';
+import {IUser} from '@domain/models/entities/User';
 
 export class authFirebaseRepository implements IAuthRepository {
   async signIn(email: string, password: string): Promise<User> {
@@ -19,7 +20,7 @@ export class authFirebaseRepository implements IAuthRepository {
       console.log(claims);
     }
 
-    return JSONWrapper.parse(User, user.toJSON()) as User;
+    return JSONWrapper.parse(User, user.toJSON()) as IUser;
   }
 
   async signUp(email: string, password: string): Promise<User> {

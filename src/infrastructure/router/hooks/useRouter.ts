@@ -22,7 +22,8 @@ export const useRouter = (): UseRouterInterface => {
 
       isFetched.current = true;
     }
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return {
     isAuthenticated,
