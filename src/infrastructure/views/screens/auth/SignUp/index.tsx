@@ -14,7 +14,7 @@ export function SignUp({ navigation }: SignUpProps) {
   } = useSignUp();
 
   return (
-    <Center w="100%">
+    <Center w="100%" style={{ justifyContent: 'center', alignItems: 'center' }}>
       <Box safeArea p="2" w="90%" py="8">
         <Heading
           size="lg"

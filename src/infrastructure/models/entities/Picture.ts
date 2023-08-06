@@ -1,7 +1,13 @@
-import { CatchAll } from '@domain/decorators/tryCatch';
-import { IPicture } from '@domain/models/entities/Picture';
-import { DateTimeHelper } from '@infrastructure/helpers/utils/DateTimeHelper';
 import { Expose } from 'class-transformer';
+
+// Decorators
+import { CatchAll } from '@domain/decorators/tryCatch';
+
+// Interfaces
+import { IPicture } from '@domain/models/entities/Picture';
+
+// Helpers
+import { DateTimeHelper } from '@helpers/utils';
 
 export class Picture implements IPicture {
   @Expose({ name: 'uid' })

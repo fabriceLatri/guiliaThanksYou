@@ -8,7 +8,19 @@
       "@domain": ["src/domain"],
       "@domain/*": ["src/domain/*"],
       "@infrastructure": ["src/infrastructure"],
-      "@infrastructure/*": ["src/infrastructure/*"]
+      "@infrastructure/*": ["src/infrastructure/*"],
+      "@components": ["src/infrastructure/views/components"],
+      "@components/*": ["src/infrastructure/views/components/*"],
+      "@layouts": ["src/infrastructure/views/components/layouts"],
+      "@layouts/*": ["src/infrastructure/views/components/layouts/*"],
+      "@screens": ["src/infrastructure/views/screens"],
+      "@screens/*": ["src/infrastructure/views/screens/*"],
+      "@router": ["src/infrastructure/router"],
+      "@router/*": ["src/infrastructure/router/*"],
+      "@configs": ["src/infrastructure/configs"],
+      "@configs/*": ["src/infrastructure/configs/*"],
+      "@helpers": ["src/infrastructure/helpers"],
+      "@helpers/*": ["src/infrastructure/helpers/*"]
     }
   }
 }

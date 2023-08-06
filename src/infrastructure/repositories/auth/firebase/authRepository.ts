@@ -1,7 +1,7 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth';
 
 import { IAuthRepository } from '@domain/repositories/auth/authRepository';
-import { JSONWrapper } from '@infrastructure/helpers/utils/JSONWrapper';
+import { JSONWrapper } from '@helpers/utils';
 import { User } from '@infrastructure/models/entities/User';
 import { IUser } from '@domain/models/entities/User';
 
