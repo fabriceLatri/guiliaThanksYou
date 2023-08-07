@@ -14,7 +14,7 @@ export function SignIn({ navigation }: SignInProps) {
     control, errors, onSubmit, loading,
   } = useSignIn();
   return (
-    <Center w="100%">
+    <Center w="100%" style={{ justifyContent: 'center', alignItems: 'center' }}>
       <Box safeArea p="2" py="8" w="90%">
         <Heading
           size="lg"

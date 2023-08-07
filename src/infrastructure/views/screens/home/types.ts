@@ -1,3 +1,6 @@
+import { IPicture } from '@domain/models/entities/Picture';
+
 export type UseHomeHook = {
-  signOut: () => void;
+  signOut: () => Promise<void>;
+  picture: IPicture;
 };

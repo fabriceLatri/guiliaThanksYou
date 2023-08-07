@@ -2,35 +2,41 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // Screens
-import { SignIn } from '@infrastructure/views/screens/auth/SignIn';
-import { SignUp } from '@infrastructure/views/screens/auth/SignUp';
-import { Home } from '@infrastructure/views/screens/home';
+import { SignIn } from '@screens/auth/SignIn';
+import { SignUp } from '@screens/auth/SignUp';
+
+// Custom Hooks
+import { useRouter } from '@router/hooks/useRouter';
 
 // Types
-import { RootBottomTabParamsList, RootStackParamsList } from '@infrastructure/router/types';
-import { useRouter } from '@infrastructure/router/hooks/useRouter';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Paths } from '@infrastructure/router/enums/paths';
+import { LoginStackParamsList, MainStackParamsList } from '@router/types';
+import { Paths } from '@router/enums/paths';
+import { HomeRoutes } from '@router/HomeRoutes';
 
-const Stack = createNativeStackNavigator<RootStackParamsList>();
+const LoginStack = createNativeStackNavigator<LoginStackParamsList>();
 
-const Tab = createBottomTabNavigator<RootBottomTabParamsList>();
+const MainStack = createNativeStackNavigator<MainStackParamsList>();
 
 export function Router() {
   const { isAuthenticated } = useRouter();
 
   return isAuthenticated ? (
-    <Tab.Navigator>
-      <Tab.Screen name={Paths.HOME} component={Home} />
-    </Tab.Navigator>
+    <MainStack.Navigator
+      screenOptions={{
+        headerLargeTitle: true,
+        headerLargeTitleShadowVisible: false,
+      }}
+    >
+      <MainStack.Screen name={Paths.HOME_ROUTES} component={HomeRoutes} />
+    </MainStack.Navigator>
   ) : (
-    <Stack.Navigator>
-      <Stack.Screen
+    <LoginStack.Navigator>
+      <LoginStack.Screen
         name={Paths.SIGN_IN}
         component={SignIn}
         options={{ headerShown: false, animationTypeForReplace: 'pop' }}
       />
-      <Stack.Screen name={Paths.SIGN_UP} component={SignUp} options={{ headerShown: false }} />
-    </Stack.Navigator>
+      <LoginStack.Screen name={Paths.SIGN_UP} component={SignUp} options={{ headerShown: false }} />
+    </LoginStack.Navigator>
   );
 }

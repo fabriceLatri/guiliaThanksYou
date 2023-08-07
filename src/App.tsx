@@ -6,22 +6,31 @@
  */
 
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux';
+import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { useColorScheme } from 'react-native';
 import { NativeBaseProvider } from 'native-base';
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
-
+// Router
 import { Router } from '@infrastructure/router';
-import { Provider } from 'react-redux';
+
+// State Management
 import { store } from '@infrastructure/RTK/store';
-import { useToast } from '@infrastructure/helpers/hooks/toast';
+
+// Notifications
+import { useToast } from '@helpers/hooks/toast';
+
+// Themes
+import { useNativeBaseTheme } from '@configs/theme';
 
 function App(): React.JSX.Element {
   const { toastConfig } = useToast();
-
+  const nativeBaseTheme = useNativeBaseTheme();
+  const scheme = useColorScheme();
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <NativeBaseProvider>
+      <NavigationContainer theme={scheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <NativeBaseProvider theme={nativeBaseTheme}>
           <Router />
         </NativeBaseProvider>
       </NavigationContainer>
