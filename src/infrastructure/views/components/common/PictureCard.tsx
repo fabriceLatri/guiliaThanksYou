@@ -1,12 +1,14 @@
 import React from 'react';
 import {
-  AspectRatio, Box, Center, HStack, Heading, Image, Stack, Text,
+  AspectRatio, Box, HStack, Heading, Image, Stack, Text,
 } from 'native-base';
 import { IPicture } from '@domain/models/entities/Picture';
 
-export function PictureCard({
-  getFile, filename, author, description, lastModified,
-}: IPicture) {
+type PictureCardProps = {
+  picture: IPicture;
+};
+
+export function PictureCard({ picture }: PictureCardProps) {
   return (
     <Box alignItems="center">
       <Box
@@ -28,36 +30,37 @@ export function PictureCard({
         }}
       >
         <Box>
-          <AspectRatio w="100%" ratio={16 / 9}>
+          <AspectRatio w="100%">
             <Image
+              resizeMode="contain"
               source={{
-                uri: getFile(),
+                uri: picture.getFile(),
               }}
-              alt="image"
+              alt={`image-${picture.getName()}`}
             />
           </AspectRatio>
         </Box>
         <Stack p="4" space={3}>
           <Stack space={2}>
             <Heading size="md" ml="-1">
-              {filename}
+              {picture.getName()}
             </Heading>
             <Text
               fontSize="xs"
               _light={{
-                color: 'violet.500',
+                color: 'indigo.500',
               }}
               _dark={{
-                color: 'violet.400',
+                color: 'indigo.400',
               }}
               fontWeight="500"
               ml="-0.5"
               mt="-1"
             >
-              {author}
+              {picture.author}
             </Text>
           </Stack>
-          <Text fontWeight="400">{description}</Text>
+          <Text fontWeight="400">{picture.description}</Text>
           <HStack alignItems="center" space={4} justifyContent="space-between">
             <HStack alignItems="center">
               <Text
@@ -67,7 +70,7 @@ export function PictureCard({
                 }}
                 fontWeight="400"
               >
-                {lastModified()}
+                {picture.lastModified()}
               </Text>
             </HStack>
           </HStack>

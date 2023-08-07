@@ -43,8 +43,12 @@ export class Picture implements IPicture {
     this.updatedAt = updatedAt;
   }
 
+  getName(): string {
+    return this.filename.substring(0, this.filename.lastIndexOf('.'));
+  }
+
   getFile() {
-    return `data:image/png;base64:${this.file}`;
+    return `data:image/png;base64,${this.file}`;
   }
 
   @CatchAll((error, ctx) => console.error(error.message))

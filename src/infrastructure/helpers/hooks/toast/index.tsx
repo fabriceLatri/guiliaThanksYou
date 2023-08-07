@@ -11,9 +11,7 @@ export const useToast = (): UseToastProps => {
         <BaseToast {...props} text1Style={{ marginBottom: 3 }} text2NumberOfLines={3} />
       ),
 
-      error: (props: BaseToastProps) => (
-        <ErrorToast {...props} text1Style={{ marginBottom: 3 }} text2NumberOfLines={3} />
-      ),
+      error: (props: BaseToastProps) => <ErrorToast {...props} text1Style={{ marginBottom: 3 }} text2NumberOfLines={3} />,
 
       info: (props: BaseToastProps) => <InfoToast {...props} text1Style={{ marginBottom: 3 }} text2NumberOfLines={3} />,
     }),

@@ -7,6 +7,7 @@ export interface IPicture {
   createdAt: Date;
   updatedAt: Date;
 
+  getName: () => string;
   getFile: () => string;
   lastModified: () => string;
 }

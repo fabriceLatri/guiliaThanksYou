@@ -9,7 +9,7 @@ const Tab = createBottomTabNavigator<RootBottomTabParamsList>();
 export function HomeRoutes() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name={Paths.HOME} component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name={Paths.HOME} component={Home} />
     </Tab.Navigator>
   );
 }
