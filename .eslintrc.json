@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb"],
-  "plugins": ["@typescript-eslint", "react"],
+  "plugins": ["@typescript-eslint", "react", "react-hooks"],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "import/no-unresolved": 0,
