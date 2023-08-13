@@ -28,9 +28,9 @@ export const Measure = () => (target: any, propertyKey: string, descriptor: Prop
   const originalMethod = descriptor.value;
 
   // Rewrite original method in a wrapper
-  descriptor.value = function (...args: any[]) {
+  descriptor.value = async function (...args: any[]) {
     const start = performance.now();
-    const result = originalMethod.apply(this, args);
+    const result = await originalMethod.apply(this, args);
     const end = performance.now();
 
     console.info(`${propertyKey} method executed in ${roundTo(end - start, 2)} milliseconds`);

@@ -3,7 +3,7 @@ import {
   signInThunk, signOutThunk, signUpThunk, getUserIsAuthenticatedThunk,
 } from '@infrastructure/RTK/auth/thunks';
 import { AuthState } from '@infrastructure/RTK/auth/slices/types';
-import { AuthError } from '@domain/models/errors/auth/authError';
+import { AuthError } from '@domain/errors';
 
 const initialState = {
   loading: false,

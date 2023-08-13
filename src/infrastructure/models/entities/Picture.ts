@@ -10,14 +10,14 @@ import { IPicture } from '@domain/models/entities/Picture';
 import { DateTimeHelper } from '@helpers/utils';
 
 export class Picture implements IPicture {
-  @Expose({ name: 'uid' })
-    id: string;
+  id: string;
 
   author: string;
 
   description: string;
 
-  filename: string;
+  @Expose({ name: 'fileName' })
+    filename: string;
 
   file: string;
 

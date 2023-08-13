@@ -3,7 +3,9 @@ import { IAuthRepository } from '@domain/repositories/auth/authRepository';
 import { CatchAll } from '@domain/decorators/tryCatch';
 import { Measure } from '@domain/decorators/measure';
 import { IUser } from '@domain/models/entities/User';
+import { Singleton } from '@domain/decorators';
 
+@Singleton
 export class AuthService implements IAuthService {
   constructor(private readonly repository: IAuthRepository) {}
 
