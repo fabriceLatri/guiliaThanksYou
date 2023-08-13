@@ -6,9 +6,10 @@ import type { SignUpFormData, SignUpHook } from '@infrastructure/views/screens/a
 import { useAppDispatch, useAppSelector } from '@infrastructure/RTK/hooks';
 import { useToast } from '@infrastructure/helpers/hooks/toast';
 import { useCallback } from 'react';
-import { AuthError } from '@domain/models/errors/auth/authError';
+import { AuthError } from '@domain/errors';
 import { signUpThunk } from '@infrastructure/RTK/auth/thunks';
 import { signUpValidatorSchema } from '@infrastructure/views/screens/auth/SignUp/validator';
+import { useServices } from '@infrastructure/services';
 
 export const useSignUp = (): SignUpHook => {
   const {
@@ -23,12 +24,14 @@ export const useSignUp = (): SignUpHook => {
   const dispatch = useAppDispatch();
   const { loading } = useAppSelector((state) => state.auth);
 
+  const { authService } = useServices();
+
   const { displayErrorToast } = useToast();
 
   const onSubmit = useCallback(
     handleSubmit(async ({ email, password }: SignUpFormData) => {
       try {
-        await dispatch(signUpThunk({ email, password })).unwrap();
+        await dispatch(signUpThunk({ authService, email, password })).unwrap();
       } catch (error) {
         const authError = error as AuthError;
         displayErrorToast(authError.message);

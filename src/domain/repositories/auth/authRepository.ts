@@ -1,8 +1,8 @@
-import { User } from '@domain/models/entities/User';
+import { IUser } from '@domain/models/entities/User';
 
 export interface IAuthRepository {
-  signIn: (email: string, password: string) => Promise<User>;
-  signUp: (email: string, password: string) => Promise<User>;
+  signIn: (email: string, password: string) => Promise<IUser>;
+  signUp: (email: string, password: string) => Promise<IUser>;
   signOut: () => Promise<void>;
-  getUserIsAuthenticatedAsync: () => Promise<User | null>;
+  getUserIsAuthenticatedAsync: () => Promise<IUser | null>;
 }

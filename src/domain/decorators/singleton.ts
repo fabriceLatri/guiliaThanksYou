@@ -1,4 +1,4 @@
-function Singleton<T extends new(...args: any[]) => any>(ctr: T): T {
+export function Singleton<T extends new(...args: any[]) => any>(ctr: T): T {
   let instance: T;
 
   return class {
