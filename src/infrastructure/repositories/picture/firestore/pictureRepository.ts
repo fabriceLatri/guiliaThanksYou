@@ -10,8 +10,8 @@ import { JSONWrapper } from '@helpers/utils';
 @Singleton
 export class PictureRepository implements IPictureRepository {
   async getPictures(): Promise<IPicture[]> {
-    const picturesQuerySnapsot = await firestore().collection('pictures').orderBy('updatedAt', 'desc').get();
-    const picturesData = picturesQuerySnapsot.docs.map((doc) => {
+    const picturesQuerySnapshot = await firestore().collection('pictures').orderBy('updatedAt', 'desc').get();
+    const picturesData = picturesQuerySnapshot.docs.map((doc) => {
       const data = doc.data();
       return {
         ...data,

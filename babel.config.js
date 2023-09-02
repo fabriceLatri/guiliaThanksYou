@@ -19,6 +19,7 @@ module.exports = function (api) {
             '@router': './src/infrastructure/router',
             '@configs': './src/infrastructure/configs',
             '@helpers': './src/infrastructure/helpers',
+            '@e2e/helpers': './e2e/helpers',
           },
           extensions: ['.ios.js', '.android.js', '.js', '.jsx', '.json', '.tsx', '.ts', '.native.js'],
         },
