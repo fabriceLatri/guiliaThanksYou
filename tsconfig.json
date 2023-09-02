@@ -21,7 +21,8 @@
       "@configs/*": ["src/infrastructure/configs/*"],
       "@helpers": ["src/infrastructure/helpers"],
       "@helpers/*": ["src/infrastructure/helpers/*"],
-      "@e2e/helpers": ["e2e/helpers"]
+      "@e2e/helpers": ["e2e/helpers"],
+      "@e2e/helpers/*": ["e2e/helpers/*"]
     }
   }
 }
